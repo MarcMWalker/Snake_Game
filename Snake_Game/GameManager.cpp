@@ -28,10 +28,13 @@ void GameManager::createMap(){
 		}
 		if(y > 0 && y < getYMax(GameManager::m_yMax)) {
 			for (int x{ 0 }; x < getXMax(GameManager::m_xMax); ++x) {
-				if (x == 0 || x == getXMax(GameManager::m_xMax)-1) {
+				if (x == 0 || x == getXMax(GameManager::m_xMax) - 1) {
 					std::cout << "*";
 				}
-				else{
+				else if (x > 0 && x < GameManager::m_xMax && x == GameManager::m_fruitX && y == GameManager::m_fruitY) {
+					std::cout << "@";
+				}
+				else {
 					std::cout << " ";
 				}
 			}
@@ -46,9 +49,9 @@ void GameManager::createMap(){
 	}
 }
 
-void GameManager::randomiseFruitPlacement(GameManager game){
+void GameManager::randomiseFruitPlacement(GameManager &game){
 	srand(time(NULL));
-	game.m_fruitX = rand() % 54 + 1;
+	game.m_fruitX = rand() % 53 + 1;
 	game.m_fruitY = rand() % 39 + 1;
 	std::cout << "X: " << game.m_fruitX << "\n";
 	std::cout << "Y: " << game.m_fruitY << "\n";

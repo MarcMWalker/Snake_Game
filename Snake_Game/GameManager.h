@@ -19,7 +19,7 @@ public:
 	int getXMax(int& m_xMax)const;
 	int getYMax(int& m_yMax)const;
 	void createMap();
-	void randomiseFruitPlacement(GameManager);
+	void randomiseFruitPlacement(GameManager& game);
 	void placeRandomFruit();
 };
 #endif
