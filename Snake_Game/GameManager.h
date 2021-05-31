@@ -3,6 +3,9 @@
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
+#include <chrono>
+#include <thread>
+using namespace std::chrono_literals;
 
 class GameManager{
 private:
@@ -12,6 +15,7 @@ private:
 	int m_yMax;
 	int m_fruitX;
 	int m_fruitY;
+	int m_Score;
 public:
 	GameManager();
 	int getXMin(int& m_xMin)const;
@@ -21,6 +25,7 @@ public:
 	void createMap();
 	void randomiseFruitPlacement(GameManager& game);
 	void placeRandomFruit();
+	int getScore()const;
 };
 #endif
 

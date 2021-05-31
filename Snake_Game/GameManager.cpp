@@ -1,6 +1,6 @@
 #include "GameManager.h"
 
-GameManager::GameManager() : m_xMin{ 0 }, m_yMin{ 0 }, m_xMax{ 55 }, m_yMax{ 40 }, m_fruitX{ 0 }, m_fruitY{0}{
+GameManager::GameManager() : m_xMin{ 0 }, m_yMin{ 0 }, m_xMax{ 55 }, m_yMax{ 40 }, m_fruitX{ 0 }, m_fruitY{ 0 }, m_Score{0}{
 }
 
 int GameManager::getXMin(int& m_xMin) const{
@@ -47,6 +47,7 @@ void GameManager::createMap(){
 		}
 		std::cout << "\n";
 	}
+	std::cout << "Score: " << GameManager::getScore();
 }
 
 void GameManager::randomiseFruitPlacement(GameManager &game){
@@ -59,4 +60,9 @@ void GameManager::randomiseFruitPlacement(GameManager &game){
 
 void GameManager::placeRandomFruit(){
 	std::cout << "#";
+}
+
+int GameManager::getScore()const
+{
+	return GameManager::m_Score;
 }
