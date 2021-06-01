@@ -19,11 +19,14 @@ int main() {
 
 	GameManager game;
 	bool end{};
+	bool fruitPicked{false};
+	game.randomiseFruitPlacement(fruitPicked);
 	while (end != true) {
 		ShowConsoleCursor(false);
-		//game.randomiseFruitPlacement(game);
-		game.createMap();
+		game.createMap(fruitPicked);
+		std::cout << "Score: " << game.getScore();
 		std::this_thread::sleep_for(0.0166s);
+		//std::this_thread::sleep_for(0.25s); //Slower refresh for testing
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 0, 0 });
 	}
 	return 0;

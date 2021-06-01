@@ -21,9 +21,15 @@ int GameManager::getYMax(int& m_yMax) const{
 	return m_yMax;
 }
 
-void GameManager::createMap(){
+void GameManager::createMap(bool& fruitPicked){
 	snake.snakeMovement();
 	snake.checkPosition();
+
+	if (fruitPicked == true) {
+		randomiseFruitPlacement(fruitPicked);
+		fruitPicked = false;
+	}
+
 	for (int y{ 0 }; y < getYMax(GameManager::m_yMax); ++y) {
 		if (y <= 0) {
 			for (int x{ 0 }; x < getXMax(GameManager::m_xMax); ++x) {
@@ -54,15 +60,20 @@ void GameManager::createMap(){
 		}
 		std::cout << "\n";
 	}
-	std::cout << "Score: " << GameManager::getScore();
+	
+	if (m_fruitX == snake.getX() && m_fruitY == snake.getY()) {
+		fruitPicked = true;
+	}
+	//std::cout << "Snake x:" << snake.getX();
+	//std::cout << "\nSnake y:" << snake.getY();
 }
 
-void GameManager::randomiseFruitPlacement(GameManager &game){
+void GameManager::randomiseFruitPlacement(bool& fruit){
 	srand(time(NULL));
-	game.m_fruitX = rand() % 53 + 1;
-	game.m_fruitY = rand() % 39 + 1;
-	std::cout << "X: " << game.m_fruitX << "\n";
-	std::cout << "Y: " << game.m_fruitY << "\n";
+	m_fruitX = rand() % 53 + 1;
+	m_fruitY = rand() % 39 + 1;
+	//std::cout << "X: " << m_fruitX << "\n";
+	//std::cout << "Y: " << m_fruitY << "\n";
 }
 
 void GameManager::placeRandomFruit(){

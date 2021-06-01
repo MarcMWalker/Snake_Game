@@ -11,11 +11,11 @@ void Snake::changeDirection() {
 void Snake::snakeMovement() {
 	
 	if (m_movingLeft == true) {
-		m_headX -= 2;
+		m_headX -= 1;
 	}
 
 	if (m_movingRight == true) {
-		m_headX += 2;
+		m_headX += 1;
 	}
 
 	if (m_movingUp == true) {
@@ -31,7 +31,7 @@ void Snake::snakeMovement() {
 		m_movingRight = false;
 		m_movingUp = false;
 		m_movingDown = false;
-		m_headX-=2;
+		m_headX-=1;
 		checkPosition();
 		return;
 	}
@@ -40,7 +40,7 @@ void Snake::snakeMovement() {
 		m_movingRight = true;
 		m_movingUp = false;
 		m_movingDown = false;
-		m_headX+=2;
+		m_headX+=1;
 		checkPosition();
 		return;
 	}

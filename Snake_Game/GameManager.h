@@ -23,8 +23,8 @@ public:
 	int getYMin(int& m_yMin)const;
 	int getXMax(int& m_xMax)const;
 	int getYMax(int& m_yMax)const;
-	void createMap();
-	void randomiseFruitPlacement(GameManager& game);
+	void createMap(bool &fruit);
+	void randomiseFruitPlacement(bool& fruitPicked);
 	void placeRandomFruit();
 	int getScore()const;
 	Snake snake;
