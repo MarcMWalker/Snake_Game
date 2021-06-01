@@ -21,7 +21,7 @@ int main() {
 	bool end{};
 	while (end != true) {
 		ShowConsoleCursor(false);
-		game.randomiseFruitPlacement(game);
+		//game.randomiseFruitPlacement(game);
 		game.createMap();
 		std::this_thread::sleep_for(0.0166s);
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 0, 0 });

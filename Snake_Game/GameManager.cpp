@@ -3,6 +3,8 @@
 GameManager::GameManager() : m_xMin{ 0 }, m_yMin{ 0 }, m_xMax{ 55 }, m_yMax{ 40 }, m_fruitX{ 0 }, m_fruitY{ 0 }, m_Score{0}{
 }
 
+Snake snake;
+
 int GameManager::getXMin(int& m_xMin) const{
 	return m_xMin;
 }
@@ -20,6 +22,8 @@ int GameManager::getYMax(int& m_yMax) const{
 }
 
 void GameManager::createMap(){
+	snake.snakeMovement();
+	snake.checkPosition();
 	for (int y{ 0 }; y < getYMax(GameManager::m_yMax); ++y) {
 		if (y <= 0) {
 			for (int x{ 0 }; x < getXMax(GameManager::m_xMax); ++x) {
@@ -32,6 +36,9 @@ void GameManager::createMap(){
 					std::cout << "*";
 				}
 				else if (x > 0 && x < GameManager::m_xMax && x == GameManager::m_fruitX && y == GameManager::m_fruitY) {
+					std::cout << "$";
+				}
+				else if (x == snake.getX() && y == snake.getY()) {
 					std::cout << "O";
 				}
 				else {
