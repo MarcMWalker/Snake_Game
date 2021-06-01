@@ -1,9 +1,9 @@
 #include <iostream>
 #include <Windows.h>
 #include "GameManager.h"
+#include "Snake.h"
 
-void ShowConsoleCursor(bool showFlag)
-{
+void ShowConsoleCursor(bool showFlag){
 	HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
 	CONSOLE_CURSOR_INFO     cursorInfo;
 	GetConsoleCursorInfo(out, &cursorInfo);
@@ -12,7 +12,6 @@ void ShowConsoleCursor(bool showFlag)
 }
 
 int main() {
-
 	HWND console = GetConsoleWindow();
 	RECT r;
 	GetWindowRect(console, &r);

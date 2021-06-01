@@ -5,6 +5,7 @@
 #include <time.h>
 #include <chrono>
 #include <thread>
+#include "Snake.h"
 using namespace std::chrono_literals;
 
 class GameManager{
@@ -26,6 +27,7 @@ public:
 	void randomiseFruitPlacement(GameManager& game);
 	void placeRandomFruit();
 	int getScore()const;
+	Snake snake;
 };
 #endif
 

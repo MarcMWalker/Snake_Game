@@ -32,7 +32,7 @@ void GameManager::createMap(){
 					std::cout << "*";
 				}
 				else if (x > 0 && x < GameManager::m_xMax && x == GameManager::m_fruitX && y == GameManager::m_fruitY) {
-					std::cout << "@";
+					std::cout << "O";
 				}
 				else {
 					std::cout << " ";
@@ -62,7 +62,6 @@ void GameManager::placeRandomFruit(){
 	std::cout << "#";
 }
 
-int GameManager::getScore()const
-{
+int GameManager::getScore()const{
 	return GameManager::m_Score;
 }
