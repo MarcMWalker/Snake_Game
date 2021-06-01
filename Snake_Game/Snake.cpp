@@ -26,7 +26,7 @@ void Snake::snakeMovement() {
 		m_headY += 1;
 	}
 
-	if (GetAsyncKeyState(0x41) && m_movingLeft != true) {
+	if (GetAsyncKeyState(0x41) && m_movingLeft != true && m_movingRight != true) {
 		m_movingLeft = true;
 		m_movingRight = false;
 		m_movingUp = false;
@@ -35,7 +35,7 @@ void Snake::snakeMovement() {
 		checkPosition();
 		return;
 	}
-	if (GetAsyncKeyState(0x44) && m_movingRight != true) {
+	if (GetAsyncKeyState(0x44) && m_movingRight != true && m_movingLeft != true) {
 		m_movingLeft = false;
 		m_movingRight = true;
 		m_movingUp = false;
@@ -44,7 +44,7 @@ void Snake::snakeMovement() {
 		checkPosition();
 		return;
 	}
-	if (GetAsyncKeyState(0x57)) {
+	if (GetAsyncKeyState(0x57) && m_movingUp != true && m_movingDown != true) {
 		m_movingLeft = false;
 		m_movingRight = false;
 		m_movingUp = true;
@@ -53,7 +53,7 @@ void Snake::snakeMovement() {
 		checkPosition();
 		return;
 	}
-	if (GetAsyncKeyState(0x53)) {
+	if (GetAsyncKeyState(0x53) && m_movingDown != true && m_movingUp != true) {
 		m_movingLeft = false;
 		m_movingRight = false;
 		m_movingUp = false;
