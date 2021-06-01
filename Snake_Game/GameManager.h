@@ -25,7 +25,7 @@ public:
 	int getYMax(int& m_yMax)const;
 	void createMap(bool &fruit);
 	void randomiseFruitPlacement(bool& fruitPicked);
-	void placeRandomFruit();
+	void increaseScore();
 	int getScore()const;
 	Snake snake;
 };

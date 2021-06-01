@@ -63,6 +63,7 @@ void GameManager::createMap(bool& fruitPicked){
 	
 	if (m_fruitX == snake.getX() && m_fruitY == snake.getY()) {
 		fruitPicked = true;
+		increaseScore();
 	}
 	//std::cout << "Snake x:" << snake.getX();
 	//std::cout << "\nSnake y:" << snake.getY();
@@ -76,8 +77,8 @@ void GameManager::randomiseFruitPlacement(bool& fruit){
 	//std::cout << "Y: " << m_fruitY << "\n";
 }
 
-void GameManager::placeRandomFruit(){
-	std::cout << "#";
+void GameManager::increaseScore() {
+	m_Score += 100;
 }
 
 int GameManager::getScore()const{
