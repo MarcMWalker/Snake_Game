@@ -5,7 +5,6 @@ GameManager::GameManager() : m_xMin{ 0 }, m_yMin{ 0 }, m_xMax{ 55 }, m_yMax{ 40 
 
 Snake snake;
 
-
 int GameManager::getXMin(int& m_xMin) const{
 	return m_xMin;
 }
@@ -37,6 +36,8 @@ void GameManager::createMap(bool& fruitPicked){
 				std::cout << "*";
 			}
 		}
+		//Printing of snake must be within here
+		//////////////////
 		if(y > 0 && y < getYMax(GameManager::m_yMax)) {
 			for (int x{ 0 }; x < getXMax(GameManager::m_xMax); ++x) {
 				if (x == 0 || x == getXMax(GameManager::m_xMax) - 1) {
@@ -63,6 +64,8 @@ void GameManager::createMap(bool& fruitPicked){
 				}
 			}
 		}
+		/////////////////////////////////////////
+		
 		if (y >= getYMax(GameManager::m_yMax)-1) {
 			std::cout << "\n";
 			for (int x{ 0 }; x < getXMax(GameManager::m_xMax); ++x) {

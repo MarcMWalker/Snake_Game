@@ -130,8 +130,15 @@ size_t Snake::getSnakeLength()const {
 }
 
 void Snake::updateSnakePlacement(std::vector<Snake>& m_snakeBody, Snake& snake) {
-	//int headSnakeX{ snake.getX() };
-	//int headSnakeY{ snake.getY() };
+	m_snakeBody.at(0).m_previousX = m_snakeBody.at(0).getX();
+	m_snakeBody.at(0).m_previousY = m_snakeBody.at(0).getY();
 	m_snakeBody.at(0).setX(snake.m_previousX);
 	m_snakeBody.at(0).setY(snake.m_previousY);
+
+	if (snake.getSnakeLength() > 0) {
+		for (int i{ 1 }; i < m_snakeBody.size(); i++) {
+			m_snakeBody.at(i).setX(m_snakeBody.at((static_cast<__int64>(i) - 1)).m_previousX);
+			m_snakeBody.at(i).setY(m_snakeBody.at((static_cast<__int64>(i) - 1)).m_previousY);
+		}
+	}
 }
