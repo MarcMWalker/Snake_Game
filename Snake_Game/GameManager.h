@@ -16,7 +16,8 @@ private:
 	int m_yMax;
 	int m_fruitX;
 	int m_fruitY;
-	int m_Score;
+	int m_score;
+	int m_increment;
 public:
 	GameManager();
 	int getXMin(int& m_xMin)const;

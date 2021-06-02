@@ -25,6 +25,7 @@ int main() {
 		ShowConsoleCursor(false);
 		game.createMap(fruitPicked);
 		std::cout << "Score: " << game.getScore();
+		std::cout << "\nLength: " << game.snake.getSnakeLength();
 		std::this_thread::sleep_for(0.0166s);
 		//std::this_thread::sleep_for(0.25s); //Slower refresh for testing
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 0, 0 });

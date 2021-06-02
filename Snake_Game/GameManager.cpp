@@ -1,9 +1,10 @@
 #include "GameManager.h"
 
-GameManager::GameManager() : m_xMin{ 0 }, m_yMin{ 0 }, m_xMax{ 55 }, m_yMax{ 40 }, m_fruitX{ 0 }, m_fruitY{ 0 }, m_Score{0}{
+GameManager::GameManager() : m_xMin{ 0 }, m_yMin{ 0 }, m_xMax{ 55 }, m_yMax{ 40 }, m_fruitX{ 0 }, m_fruitY{ 0 }, m_score{ 0 }, m_increment{0}{
 }
 
 Snake snake;
+
 
 int GameManager::getXMin(int& m_xMin) const{
 	return m_xMin;
@@ -63,6 +64,8 @@ void GameManager::createMap(bool& fruitPicked){
 	
 	if (m_fruitX == snake.getX() && m_fruitY == snake.getY()) {
 		fruitPicked = true;
+		snake.increaseBody(snake, m_increment);
+		m_increment++;
 		increaseScore();
 	}
 	//std::cout << "Snake x:" << snake.getX();
@@ -78,9 +81,9 @@ void GameManager::randomiseFruitPlacement(bool& fruit){
 }
 
 void GameManager::increaseScore() {
-	m_Score += 100;
+	m_score += 100;
 }
 
 int GameManager::getScore()const{
-	return GameManager::m_Score;
+	return GameManager::m_score;
 }
