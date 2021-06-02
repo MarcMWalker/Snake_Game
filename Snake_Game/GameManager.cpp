@@ -48,6 +48,16 @@ void GameManager::createMap(bool& fruitPicked){
 				else if (x == snake.getX() && y == snake.getY()) {
 					std::cout << "O";
 				}
+				//Trying to iterate through snake body here to print on screen
+				else if (snake.getSnakeLength() > 0) {
+					snake.updateSnakePlacement(snake.m_snakeBody, snake);
+					if (iterateSnake(snake, x, y) == true) {
+						std::cout << "+";
+					}
+					else {
+						std::cout << " ";
+					}
+				}
 				else {
 					std::cout << " ";
 				}
@@ -87,3 +97,18 @@ void GameManager::increaseScore() {
 int GameManager::getScore()const{
 	return GameManager::m_score;
 }
+
+bool GameManager::iterateSnake(Snake& snake, int x, int y) {
+	bool isThere{};
+	for (auto i : snake.m_snakeBody) {
+		if (i.getX() == x && i.getY() == y) {
+			isThere = true;
+			return isThere;
+		}
+		else {
+			isThere = false;
+		}
+	}
+	return isThere;
+}
+

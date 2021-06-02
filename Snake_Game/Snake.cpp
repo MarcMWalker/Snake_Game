@@ -1,23 +1,31 @@
 #include "Snake.h"
 
 Snake::Snake() : m_headX{ 25 }, m_headY{ 20 }, m_movingLeft{ false }, m_movingRight{ false }, 
-m_movingUp{ false }, m_movingDown{ false }, m_previousX{m_headX}, m_previousY{m_headY} {}
+m_movingUp{ false }, m_movingDown{ false }, m_previousX{0}, m_previousY{0} {}
 
 void Snake::snakeMovement() {
 	
 	if (m_movingLeft == true) {
+		m_previousX = m_headX;
+		m_previousY = m_headY;
 		m_headX -= 1;
 	}
 
 	if (m_movingRight == true) {
+		m_previousX = m_headX;
+		m_previousY = m_headY;
 		m_headX += 1;
 	}
 
 	if (m_movingUp == true) {
+		m_previousX = m_headX;
+		m_previousY = m_headY;
 		m_headY -= 1;
 	}
 
 	if (m_movingDown == true) {
+		m_previousX = m_headX;
+		m_previousY = m_headY;
 		m_headY += 1;
 	}
 
@@ -26,6 +34,8 @@ void Snake::snakeMovement() {
 		m_movingRight = false;
 		m_movingUp = false;
 		m_movingDown = false;
+		m_previousX = m_headX;
+		m_previousY = m_headY;
 		m_headX-=1;
 		checkPosition();
 		return;
@@ -35,6 +45,8 @@ void Snake::snakeMovement() {
 		m_movingRight = true;
 		m_movingUp = false;
 		m_movingDown = false;
+		m_previousX = m_headX;
+		m_previousY = m_headY;
 		m_headX+=1;
 		checkPosition();
 		return;
@@ -44,6 +56,8 @@ void Snake::snakeMovement() {
 		m_movingRight = false;
 		m_movingUp = true;
 		m_movingDown = false;
+		m_previousX = m_headX;
+		m_previousY = m_headY;
 		m_headY-=1;
 		checkPosition();
 		return;
@@ -53,6 +67,8 @@ void Snake::snakeMovement() {
 		m_movingRight = false;
 		m_movingUp = false;
 		m_movingDown = true;
+		m_previousX = m_headX;
+		m_previousY = m_headY;
 		m_headY+=1;
 		checkPosition();
 		return;
@@ -87,19 +103,35 @@ int Snake::getY() {
 }
 
 void Snake::increaseBody(Snake& snake, int increment){
-	
 	if (increment <= 0) {
 		Snake newPart;
-		newPart.m_headX += 2;
+		newPart.m_headX = (snake.getX() + 1);
+		newPart.m_headY = (snake.getY());
 		snake.m_snakeBody.push_back(newPart);
 	}
 	else {
 		Snake newPart;
 		snake.m_snakeBody.push_back(newPart);
-		snake.m_snakeBody.at(increment).m_headX = snake.m_snakeBody.at(static_cast<__int64>(increment) - 1).m_headX;
+		snake.m_snakeBody.at(increment).m_headX = (snake.m_snakeBody.at(static_cast<__int64>(increment) - 1).m_headX) + 1;
+		snake.m_snakeBody.at(increment).m_headY = (snake.m_snakeBody.at(static_cast<__int64>(increment) - 1).m_headY);
 	}
+}
+
+void Snake::setX(int x) {
+	m_headX = x;
+}
+
+void Snake::setY(int y) {
+	m_headY = y;
 }
 
 size_t Snake::getSnakeLength()const {
 	return static_cast<size_t>(m_snakeBody.size());
+}
+
+void Snake::updateSnakePlacement(std::vector<Snake>& m_snakeBody, Snake& snake) {
+	//int headSnakeX{ snake.getX() };
+	//int headSnakeY{ snake.getY() };
+	m_snakeBody.at(0).setX(snake.m_previousX);
+	m_snakeBody.at(0).setY(snake.m_previousY);
 }
