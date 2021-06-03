@@ -1,6 +1,7 @@
 #include "GameManager.h"
 
-GameManager::GameManager() : m_xMin{ 0 }, m_yMin{ 0 }, m_xMax{ 55 }, m_yMax{ 40 }, m_fruitX{ 0 }, m_fruitY{ 0 }, m_score{ 0 }, m_increment{0}{
+GameManager::GameManager() : m_xMin{ 0 }, m_yMin{ 0 }, m_xMax{ 55 }, m_yMax{ 40 }, 
+m_fruitX{ 0 }, m_fruitY{ 0 }, m_score{ 0 }, m_increment{ 0 }{
 }
 
 Snake snake;
@@ -39,6 +40,7 @@ void GameManager::createMap(bool& fruitPicked){
 		//Printing of snake must be within here
 		//////////////////
 		if(y > 0 && y < getYMax(GameManager::m_yMax)) {
+			//snakePos = 0;
 			for (int x{ 0 }; x < getXMax(GameManager::m_xMax); ++x) {
 				if (x == 0 || x == getXMax(GameManager::m_xMax) - 1) {
 					std::cout << "*";
@@ -49,7 +51,7 @@ void GameManager::createMap(bool& fruitPicked){
 				else if (x == snake.getX() && y == snake.getY()) {
 					std::cout << "O";
 				}
-				//Trying to iterate through snake body here to print on screen
+				//need to loop through this part here to check spot and print snake body, might have to redo function below
 				else if (snake.getSnakeLength() > 0) {
 					snake.updateSnakePlacement(snake.m_snakeBody, snake);
 					if (iterateSnake(snake, x, y) == true) {
@@ -81,16 +83,12 @@ void GameManager::createMap(bool& fruitPicked){
 		m_increment++;
 		increaseScore();
 	}
-	//std::cout << "Snake x:" << snake.getX();
-	//std::cout << "\nSnake y:" << snake.getY();
 }
 
 void GameManager::randomiseFruitPlacement(bool& fruit){
 	srand(time(NULL));
 	m_fruitX = rand() % 53 + 1;
 	m_fruitY = rand() % 39 + 1;
-	//std::cout << "X: " << m_fruitX << "\n";
-	//std::cout << "Y: " << m_fruitY << "\n";
 }
 
 void GameManager::increaseScore() {
@@ -101,10 +99,11 @@ int GameManager::getScore()const{
 	return GameManager::m_score;
 }
 
+//Might have to redo to work properly
 bool GameManager::iterateSnake(Snake& snake, int x, int y) {
 	bool isThere{};
-	for (auto i : snake.m_snakeBody) {
-		if (i.getX() == x && i.getY() == y) {
+	for (auto part : snake.m_snakeBody) {
+		if (part.getX() == x && part.getY() == y) {
 			isThere = true;
 			return isThere;
 		}

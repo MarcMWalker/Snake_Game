@@ -102,7 +102,7 @@ int Snake::getY() {
 	return m_headY;
 }
 
-void Snake::increaseBody(Snake& snake, int increment){
+void Snake::increaseBody(Snake& snake, int& increment){
 	if (increment <= 0) {
 		Snake newPart;
 		newPart.m_headX = (snake.getX() + 1);
@@ -135,10 +135,17 @@ void Snake::updateSnakePlacement(std::vector<Snake>& m_snakeBody, Snake& snake) 
 	m_snakeBody.at(0).setX(snake.m_previousX);
 	m_snakeBody.at(0).setY(snake.m_previousY);
 
-	if (snake.getSnakeLength() > 0) {
-		for (int i{ 1 }; i < m_snakeBody.size(); i++) {
-			m_snakeBody.at(i).setX(m_snakeBody.at((static_cast<__int64>(i) - 1)).m_previousX);
-			m_snakeBody.at(i).setY(m_snakeBody.at((static_cast<__int64>(i) - 1)).m_previousY);
+	//Sure this should be working fine now as logic suggests, but something else affecting it
+	if (snake.getSnakeLength() > 1) {
+		for (int i{ 1 }; i <= snake.m_snakeBody.size()-1; ++i) {
+			m_snakeBody.at(i).m_previousX = m_snakeBody.at(i).getX();
+			m_snakeBody.at(i).m_previousY = m_snakeBody.at(i).getY();
+
+			int newX = m_snakeBody.at((static_cast<__int64>(i) - 1)).getX();
+			int newY = m_snakeBody.at((static_cast<__int64>(i) - 1)).getY();
+
+			m_snakeBody.at(i).setX(newX);
+			m_snakeBody.at(i).setY(newY);
 		}
 	}
 }

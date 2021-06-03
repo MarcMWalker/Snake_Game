@@ -23,7 +23,7 @@ public:
 	int getY();
 	void setX(int x);
 	void setY(int y);
-	void increaseBody(Snake &snake, int increment);
+	void increaseBody(Snake &snake, int &increment);
 	std::vector<Snake> m_snakeBody;
 	size_t getSnakeLength() const;
 	void updateSnakePlacement(std::vector<Snake>& m_snakeBody, Snake& snake);
