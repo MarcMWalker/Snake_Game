@@ -26,6 +26,9 @@ public:
 	std::vector<Snake> m_snakeBody;
 	size_t getSnakeLength() const;
 	void updateSnakePlacement(Snake& snake);
+	int newXcord;
+	int newYcord;
+	void printBody(std::vector<Snake>& m_snakeBody)const;
 	~Snake();
 };
 

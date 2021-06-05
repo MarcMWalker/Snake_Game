@@ -29,7 +29,7 @@ public:
 	void increaseScore();
 	int getScore()const;
 	Snake snake;
-	bool iterateSnake(Snake &snake, int x, int y);
+	bool iterateSnake(std::vector<Snake>snake, int x, int y);
 };
 #endif
 

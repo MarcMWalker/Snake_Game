@@ -54,7 +54,7 @@ void GameManager::createMap(bool& fruitPicked){
 				//need to loop through this part here to check spot and print snake body, might have to redo function below
 				else if (snake.getSnakeLength() > 0) {
 					snake.updateSnakePlacement(snake);
-					if (iterateSnake(snake, x, y) == true) {
+					if (iterateSnake(snake.m_snakeBody, x, y) == true) {
 						std::cout << "+";
 					}
 					else {
@@ -100,9 +100,9 @@ int GameManager::getScore()const{
 }
 
 //Might have to redo to work properly
-bool GameManager::iterateSnake(Snake& snake, int x, int y) {
+bool GameManager::iterateSnake(std::vector<Snake>snake, int x, int y) {
 	bool isThere{};
-	for (auto part : snake.m_snakeBody) {
+	for (auto part : snake) {
 		if (part.getX() == x && part.getY() == y) {
 			isThere = true;
 			return isThere;
