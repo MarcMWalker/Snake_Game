@@ -53,7 +53,7 @@ void GameManager::createMap(bool& fruitPicked){
 				}
 				//need to loop through this part here to check spot and print snake body, might have to redo function below
 				else if (snake.getSnakeLength() > 0) {
-					snake.updateSnakePlacement(snake.m_snakeBody, snake);
+					snake.updateSnakePlacement(snake);
 					if (iterateSnake(snake, x, y) == true) {
 						std::cout << "+";
 					}
